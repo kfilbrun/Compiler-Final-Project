@@ -1,6 +1,7 @@
 
 package parser;
 import java.io.PrintWriter;
+import lowlevel.Function;
 public class Expression_Statement extends Statement{
     //variable declarations
     public Expression expression;
@@ -17,7 +18,7 @@ public class Expression_Statement extends Statement{
         }
     }
     
-    public void genLLCode() {
+    public void genLLCode(Function function) {
         expression.genLLCode();
     }
 }

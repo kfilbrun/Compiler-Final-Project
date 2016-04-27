@@ -16,4 +16,8 @@ public class Parameter {
     public void print(PrintWriter w){
         w.print(" " + name + (isArray ? "[]" : "") + " ");
     }
+    
+    public void genLLCode(){
+        
+    }
 }

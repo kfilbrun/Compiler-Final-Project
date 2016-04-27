@@ -2,6 +2,7 @@
 
 package parser;
 import java.io.PrintWriter;
+import lowlevel.Function;
 
 public class Selection_Statement extends Statement {
     //variable declarations
@@ -35,5 +36,10 @@ public class Selection_Statement extends Statement {
             statement2.print(w, tabLvl + "    " );
             w.println(tabLvl + "}");
         }
+    }
+
+    @Override
+    void genLLCode(Function function) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

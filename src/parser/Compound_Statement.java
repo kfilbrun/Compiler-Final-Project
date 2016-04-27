@@ -3,6 +3,7 @@ package parser;
 
 import java.util.ArrayList;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import lowlevel.Function;
 
 public class Compound_Statement extends Statement {
@@ -28,8 +29,15 @@ public class Compound_Statement extends Statement {
             }
         }
     }
-    
-    public void genLLCode(Function parentFunction){
-        
+
+    @Override
+    void genLLCode(Function function) {
+        HashMap<String, Object> localVars = function.getTable();
+        for (Var_Declaration varDecl : this.varDecls) {
+            localVars.put(varDecl.getName(), 0);
+        }
+        for (Statement statement : this.statements) {
+            statement.genLLCode(function);                                      //Pass in local variables table instead ?
+        }
     }
 }

@@ -27,6 +27,11 @@ public class Binary_Expression extends Expression{
 
     @Override
     void genLLCode() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //call gencode on left and right children
+        expression1.genLLCode();
+        expression2.genLLCode();
+        //Store results of children gencode
+        //Get Location for your result
+        //Add operation to do your function
     }
 }
