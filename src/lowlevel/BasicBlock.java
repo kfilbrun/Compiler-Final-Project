@@ -3,6 +3,9 @@ package lowlevel;
 import java.io.*;
 import java.util.*;
 import dataflow.BitArraySet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import parser.CodeGenerationException;
 
 /**
  * This class is the primary low-level abstraction for a basic block
@@ -300,7 +303,11 @@ public class BasicBlock {
       outFile.println("  (BB " + this.getBlockNum());
     }
     for (Operation curr = firstOper; curr != null; curr=curr.getNextOper()) {
-      curr.printLLCode(outFile);
+        try {
+            curr.printLLCode(outFile);
+        } catch (CodeGenerationException ex) {
+            Logger.getLogger(BasicBlock.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     if (outFile == null) {
       System.out.println("  )");
