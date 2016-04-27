@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.io.PrintWriter;
 import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
+import lowlevel.Data;
+import lowlevel.FuncParam;
 import lowlevel.Function;
 
 public class Fun_Declaration extends Declaration{
@@ -51,26 +53,38 @@ public class Fun_Declaration extends Declaration{
 
     @Override
     CodeItem genLLCode() {
-                //get return type and name from appropriate fields
-                ReturnType returnType = this.getReturnType();
-                int myReturnNumber;
-                if(returnType.equals(ReturnType.INT)){
-                    myReturnNumber = 1;
-                } else{
-                    myReturnNumber = 0;
-                }
-                String name = this.getName();
-                //create a new Function
-              Function newFunc = new Function(myReturnNumber, name);
-        //          walk Params, doing 2 things:
-        //              1. make FuncParams
-        //              2. put Param name in lccal table
-              //create new Block and make it currentBlock
-              newFunc.createBlock0();
-              BasicBlock newBlock = new BasicBlock(newFunc);
-              newFunc.appendBlock(newBlock);
-              newFunc.setCurrBlock(newBlock);
-              //call genCode on Compound Statement
-              (this.compoundStatement).genLLCode(newFunc);                      //Void Return Type - Passing in reference to self instead???
+        //get return type and name from appropriate fields
+        ReturnType returnType = this.getReturnType();
+        int myReturnNumber;
+        if(returnType.equals(ReturnType.INT)){
+            myReturnNumber = 1;
+        } else{
+            myReturnNumber = 0;
+        }
+        String name = this.getName();
+            //create a new Function
+        Function newFunc = new Function(myReturnNumber, name);
+
+        FuncParam curParam = null;
+        boolean firstParam = true;
+        for(Parameter param : params){
+            if(firstParam){
+                curParam = new FuncParam(Data.TYPE_INT, param.name, false);
+                newFunc.setFirstParam(curParam);
+                firstParam = false;
+            }
+            else{
+                FuncParam nextParam = new FuncParam(Data.TYPE_INT, param.name, false);
+                curParam.setNextParam(nextParam);
+                curParam = nextParam;
+            }
+        }
+        
+        newFunc.createBlock0();
+        BasicBlock newBlock = new BasicBlock(newFunc);
+        newFunc.appendBlock(newBlock);
+        newFunc.setCurrBlock(newBlock);
+        //call genCode on Compound Statement
+        (this.compoundStatement).genLLCode(newFunc);                      //Void Return Type - Passing in reference to self instead???
     }
 }
