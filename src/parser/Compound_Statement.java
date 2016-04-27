@@ -3,6 +3,7 @@ package parser;
 
 import java.util.ArrayList;
 import java.io.PrintWriter;
+import lowlevel.Function;
 
 public class Compound_Statement extends Statement {
     //variable declarations
@@ -26,5 +27,9 @@ public class Compound_Statement extends Statement {
                 stmt.print(w, tabLvl);
             }
         }
+    }
+    
+    public void genLLCode(Function parentFunction){
+        
     }
 }
