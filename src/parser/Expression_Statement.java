@@ -17,4 +17,7 @@ public class Expression_Statement extends Statement{
         }
     }
     
+    public void genLLCode() {
+        expression.genLLCode();
+    }
 }

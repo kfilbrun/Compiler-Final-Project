@@ -15,4 +15,9 @@ public class Num extends Expression{
     public void print(PrintWriter w, String tabLvl){
         w.println(tabLvl + num);
     }
+
+    @Override
+    void genLLCode() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

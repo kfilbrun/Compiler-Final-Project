@@ -24,4 +24,9 @@ public class Binary_Expression extends Expression{
             expression2.print(w, tabLvl + "    ");
         }
     }
+
+    @Override
+    void genLLCode() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

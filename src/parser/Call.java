@@ -39,4 +39,8 @@ public class Call extends Expression{
         }
         
     }
+
+    @Override
+    void genLLCode() {
+    }
 }
