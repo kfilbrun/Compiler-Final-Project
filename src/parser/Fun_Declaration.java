@@ -3,6 +3,7 @@ package parser;
 
 import java.util.ArrayList;
 import java.io.PrintWriter;
+import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
 import lowlevel.Function;
 
@@ -51,14 +52,14 @@ public class Fun_Declaration extends Declaration{
     @Override
     CodeItem genLLCode() {
                 //get return type and name from appropriate fields
-                ReturnType returnType = myFunDecl.getReturnType();
+                ReturnType returnType = this.getReturnType();
                 int myReturnNumber;
                 if(returnType.equals(ReturnType.INT)){
                     myReturnNumber = 1;
                 } else{
                     myReturnNumber = 0;
                 }
-                String name = myFunDecl.getName();
+                String name = this.getName();
                 //create a new Function
               Function newFunc = new Function(myReturnNumber, name);
         //          walk Params, doing 2 things:
@@ -70,6 +71,6 @@ public class Fun_Declaration extends Declaration{
               newFunc.appendBlock(newBlock);
               newFunc.setCurrBlock(newBlock);
               //call genCode on Compound Statement
-              (this.compoundStatement).genLLCode();           //need return type
+              (this.compoundStatement).genLLCode(newFunc);                      //Void Return Type - Passing in reference to self instead???
     }
 }

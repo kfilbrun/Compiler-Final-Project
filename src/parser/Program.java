@@ -53,41 +53,6 @@ public class Program {
                     //move currentItem to newData
                     currentItem = newItem;
             }
-    
-//            if(nextDecl instanceof Var_Declaration){
-//                //cast Decl into VarDecl
-//                Var_Declaration myVarDecl = (Var_Declaration)nextDecl;
-//                //add new Data object
-//                 return new Data(1, myVarDecl.getName());
-
-//            } else if(nextDecl instanceof Fun_Declaration){
-//                
-//                //cast Decl into FunDecl
-//                Fun_Declaration myFunDecl = (Fun_Declaration)nextDecl;
-//                //get return type and name from appropriate fields
-//                ReturnType returnType = myFunDecl.getReturnType();
-//                int myReturnNumber;
-//                if(returnType.equals(ReturnType.INT)){
-//                    myReturnNumber = 1;
-//                } else{
-//                    myReturnNumber = 0;
-//                }
-//                String name = myFunDecl.getName();
-//                //create a new Function
-                Function newFunc = new Function(myReturnNumber, name);
-        //          walk Params, doing 2 things:
-        //              1. make FuncParams
-        //              2. put Param name in lccal table
-//                //create new Block and make it currentBlock
-//                  newFunc.createBlock0();
-//                BasicBlock newBlock = new BasicBlock(newFunc);
-//                newFunc.appendBlock(newBlock);
-//                newFunc.setCurrBlock(newBlock);
-//                //call genCode on Compound Statement
-//                (myFunDecl.compoundStatement).compoundStatementGenCode();           //need return type
-//            } else {
-//                System.out.println("There is an error in genLLCode.");
-//            }
             index++;
         }
         return firstItem;

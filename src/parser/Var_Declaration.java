@@ -39,7 +39,7 @@ public class Var_Declaration extends Declaration{
 
     @Override
     CodeItem genLLCode() {
-                //add new Data object
-                 return new Data(1, this.getName());
+        //add new Data object
+        return new Data(1, this.getName());
     }
 }
