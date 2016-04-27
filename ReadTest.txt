@@ -1,0 +1,27 @@
+/* recursive factorial function */
+
+
+int fact(int x, int y){
+	if(y*x>1*3+himom() + x){
+		return x * fact(x-1);
+	}
+	else{
+		return 1;
+	}
+        x = 3 / a + b * c + (d*e);
+}
+
+void main(void){
+	int x;
+        int y[4];
+	x = read();
+/*        y[3+a] = 3; */
+	if(x>0) write(fact(x[x+s]));
+
+        while(x=5) {
+            x+3;
+        }
+}
+int x;
+int y[10];
+int mom;
