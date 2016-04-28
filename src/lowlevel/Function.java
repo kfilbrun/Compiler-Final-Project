@@ -61,7 +61,7 @@ public class Function extends CodeItem {
     // controls whether any optimization should be done during code generation
   private static boolean optimize;
 
-  private HashMap symbolTable;
+  private Map<String, Integer> symbolTable;
 
     // op nums of variables for which we have a live range (def-use).  Live
     // range is a set of op nums this live range spans
@@ -95,7 +95,7 @@ public class Function extends CodeItem {
     maxBlockNum = 0;
     maxOperNum = 0;
     currBlock = null;
-    symbolTable = new HashMap();
+    symbolTable = new HashMap<>();
     maxRegNum = 0;
     returnBlock = genReturnBlock();
     firstUnconnectedBlock = null;
@@ -183,7 +183,7 @@ public class Function extends CodeItem {
    *
    * @return a reference to the function's local symbol table
    */
-  public HashMap getTable () {
+  public Map<String, Integer> getTable () {
     return symbolTable;
   }
 

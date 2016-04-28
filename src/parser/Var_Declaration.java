@@ -1,10 +1,12 @@
 
 package parser;
 
+import compiler.CMinusCompiler;
 import java.util.ArrayList;
 import java.io.PrintWriter;
 import lowlevel.CodeItem;
 import lowlevel.Data;
+import lowlevel.Function;
 
 public class Var_Declaration extends Declaration{
     //variable declarations
@@ -36,10 +38,17 @@ public class Var_Declaration extends Declaration{
             w.println();
         }
     }
-
+    
+    //Global vardecl
     @Override
     CodeItem genLLCode() {
-        //add new Data object
-        return new Data(1, this.getName());
+        CMinusCompiler.globalHash.put(declID, 0);
+        return new Data(Data.TYPE_INT, declID);
+    }
+    
+    //Function scoped vardecl
+    CodeItem genLLCode(Function func) {
+        func.getTable().put(declID, 0);
+        return new Data(Data.TYPE_INT, declID);
     }
 }

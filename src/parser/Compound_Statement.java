@@ -3,7 +3,7 @@ package parser;
 
 import java.util.ArrayList;
 import java.io.PrintWriter;
-import java.util.HashMap;
+import java.util.Map;
 import lowlevel.Function;
 
 public class Compound_Statement extends Statement {
@@ -32,7 +32,7 @@ public class Compound_Statement extends Statement {
 
     @Override
     void genLLCode(Function function) {
-        HashMap<String, Object> localVars = function.getTable();
+        Map<String, Integer> localVars = function.getTable();
         for (Var_Declaration varDecl : this.varDecls) {
             localVars.put(varDecl.getName(), 0);
         }

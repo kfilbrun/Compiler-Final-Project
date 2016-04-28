@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class CMinusCompiler implements Compiler {
 
-    public static HashMap globalHash = new HashMap();
+    public static Map<String, Integer> globalHash = new HashMap<>();
     private static boolean genX64Code = false;
 
     public CMinusCompiler() {

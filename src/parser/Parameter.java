@@ -1,6 +1,7 @@
 
 package parser;
 import java.io.PrintWriter;
+import lowlevel.Function;
 
 public class Parameter {
     //variable declarations
@@ -17,7 +18,7 @@ public class Parameter {
         w.print(" " + name + (isArray ? "[]" : "") + " ");
     }
     
-    public void genLLCode(){
-        
+    public void genLLCode(Function func){
+        func.getTable().put(name, 0);
     }
 }

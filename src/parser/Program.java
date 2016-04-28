@@ -39,10 +39,11 @@ public class Program {
         CodeItem firstItem = null;
         CodeItem currentItem = null;
         int declListSize = declarations.size();
-        int index = 0;
-        while(index <declListSize){
+        
+        for(int index = 0; index < declListSize; index++){
             Declaration nextDecl = declarations.get(index);
-            CodeItem newItem = nextDecl.genLLCode();
+            CodeItem newItem = ((Var_Declaration)nextDecl).genLLCode();
+            
             if(currentItem == null){
                     //move currentItem to newData
                     currentItem = newItem;
@@ -53,8 +54,8 @@ public class Program {
                     //move currentItem to newData
                     currentItem = newItem;
             }
-            index++;
         }
+        
         return firstItem;
     }
     
