@@ -1,6 +1,7 @@
 
 package parser;
 import java.io.PrintWriter;
+import lowlevel.Function;
 
 public class Assign_Expression extends Expression {
     //variable declarations
@@ -24,7 +25,7 @@ public class Assign_Expression extends Expression {
     }
 
     @Override
-    void genLLCode() {
+    void genLLCode(Function f) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

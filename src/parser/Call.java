@@ -3,6 +3,7 @@ package parser;
 
 import java.util.ArrayList;
 import java.io.PrintWriter;
+import lowlevel.Function;
 
 public class Call extends Expression{
     //variable declaration
@@ -41,6 +42,6 @@ public class Call extends Expression{
     }
 
     @Override
-    void genLLCode() {
+    void genLLCode(Function f) {
     }
 }

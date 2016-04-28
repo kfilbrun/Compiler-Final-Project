@@ -41,21 +41,36 @@ public class Selection_Statement extends Statement {
 
     @Override
     void genLLCode(Function function) {
-        BasicBlock ifBlock = new BasicBlock(function);
-        function.appendToCurrentBlock(ifBlock);
-        function.setCurrBlock(ifBlock);
-        expression.genLLCode(function);
+//        BasicBlock ifBlock = new BasicBlock(function);
+//        function.appendToCurrentBlock(ifBlock);
+//        function.setCurrBlock(ifBlock);
         
         BasicBlock thenBlock = new BasicBlock(function);
+        BasicBlock postBlock = new BasicBlock(function);
+        BasicBlock elseBlock = null;
+        int tgtBlock = postBlock.getBlockNum();
+        
+        //if elseStat elseBlock = new BaicBlock and tgtBlock = elseBlock.getBlock
+        if(statement2 != null){ //If we have an else stmt
+            elseBlock = new BasicBlock(function);
+            tgtBlock = elseBlock.getBlockNum();
+        }
+        
+        expression.genLLCode(function);
+        int branchReg = expression.getRegNum();
+        
+        BasicBlock curr = function.getCurrBlock();
+        // add BEQ
+        
         function.appendToCurrentBlock(thenBlock);
         function.setCurrBlock(thenBlock);
         statement1.genLLCode(function);
         
-        BasicBlock postBlock = new BasicBlock(function);
+        
         function.appendToCurrentBlock(postBlock);
         
         if(statement2 != null){ //If we have an else stmt
-            BasicBlock elseBlock = new BasicBlock(function);
+            elseBlock = new BasicBlock(function);
             function.setCurrBlock(thenBlock);
             statement1.genLLCode(function);
             elseBlock.setNextBlock(postBlock); //jump post

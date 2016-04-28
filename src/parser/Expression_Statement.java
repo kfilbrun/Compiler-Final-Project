@@ -19,6 +19,6 @@ public class Expression_Statement extends Statement{
     }
     
     public void genLLCode(Function function) {
-        expression.genLLCode();
+        expression.genLLCode(function);
     }
 }

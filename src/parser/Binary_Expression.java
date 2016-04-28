@@ -1,6 +1,7 @@
 
 package parser;
 import java.io.PrintWriter;
+import lowlevel.Function;
 
 public class Binary_Expression extends Expression{
     //variable declarations
@@ -26,10 +27,10 @@ public class Binary_Expression extends Expression{
     }
 
     @Override
-    void genLLCode() {
+    void genLLCode(Function f) {
         //call gencode on left and right children
-        expression1.genLLCode();
-        expression2.genLLCode();
+        expression1.genLLCode(f);
+        expression2.genLLCode(f);
         //Store results of children gencode
         //Get Location for your result
         //Add operation to do your function

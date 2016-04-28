@@ -1,6 +1,7 @@
 
 package parser;
 import java.io.PrintWriter;
+import lowlevel.Function;
 
 public class Num extends Expression{
     //variable declarations
@@ -17,7 +18,12 @@ public class Num extends Expression{
     }
 
     @Override
-    void genLLCode() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    void genLLCode(Function f) {
+        //get current block
+        //Make assign oper
+        //make two operands
+        //put operands in oper
+        //put opper in current block
+        //annotate with new regnumber -setregnum
     }
 }
