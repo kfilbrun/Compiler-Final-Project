@@ -38,11 +38,9 @@ public class Program {
     public CodeItem genLLCode(){
         CodeItem firstItem = null;
         CodeItem currentItem = null;
-        int declListSize = declarations.size();
         
-        for(int index = 0; index < declListSize; index++){
-            Declaration nextDecl = declarations.get(index);
-            CodeItem newItem = ((Var_Declaration)nextDecl).genLLCode();
+        for(Declaration curDecl : declarations){
+            CodeItem newItem = curDecl.genLLCode();
             
             if(currentItem == null){
                     //move currentItem to newData

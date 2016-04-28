@@ -2,6 +2,7 @@
 
 package parser;
 import java.io.PrintWriter;
+import lowlevel.BasicBlock;
 import lowlevel.Function;
 
 public class Selection_Statement extends Statement {
@@ -40,6 +41,27 @@ public class Selection_Statement extends Statement {
 
     @Override
     void genLLCode(Function function) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        BasicBlock ifBlock = new BasicBlock(function);
+        function.appendToCurrentBlock(ifBlock);
+        function.setCurrBlock(ifBlock);
+        expression.genLLCode(function);
+        
+        BasicBlock thenBlock = new BasicBlock(function);
+        function.appendToCurrentBlock(thenBlock);
+        function.setCurrBlock(thenBlock);
+        statement1.genLLCode(function);
+        
+        BasicBlock postBlock = new BasicBlock(function);
+        function.appendToCurrentBlock(postBlock);
+        
+        if(statement2 != null){ //If we have an else stmt
+            BasicBlock elseBlock = new BasicBlock(function);
+            function.setCurrBlock(thenBlock);
+            statement1.genLLCode(function);
+            elseBlock.setNextBlock(postBlock); //jump post
+            function.appendUnconnectedBlock(elseBlock);
+        }
+        
+        function.setCurrBlock(postBlock); 
     }
 }

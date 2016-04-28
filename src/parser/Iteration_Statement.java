@@ -1,6 +1,7 @@
 
 package parser;
 import java.io.PrintWriter;
+import lowlevel.BasicBlock;
 import lowlevel.Function;
 
 public class Iteration_Statement extends Statement {
@@ -28,6 +29,24 @@ public class Iteration_Statement extends Statement {
 
     @Override
     void genLLCode(Function function) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        BasicBlock initialExprBlock = new BasicBlock(function);
+        function.appendToCurrentBlock(initialExprBlock);
+        function.setCurrBlock(initialExprBlock);
+        expression.genLLCode(function);
+        
+        BasicBlock thenBlock = new BasicBlock(function);
+        function.appendToCurrentBlock(thenBlock);
+        function.setCurrBlock(thenBlock);
+        statement.genLLCode(function);
+        
+        BasicBlock finalExprBlock = new BasicBlock(function);
+        function.appendToCurrentBlock(finalExprBlock);
+        function.setCurrBlock(finalExprBlock);
+        expression.genLLCode(function);
+        finalExprBlock.setNextBlock(thenBlock);
+        
+        BasicBlock postBlock = new BasicBlock(function);
+        function.appendToCurrentBlock(postBlock);
+        function.setCurrBlock(postBlock);
     }
 }
