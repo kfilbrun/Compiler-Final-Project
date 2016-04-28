@@ -7,4 +7,14 @@ public abstract class Expression {
     abstract void print(PrintWriter p, String tabLvl);
 
     abstract void genLLCode(Function func);
+    
+    private int regNum;
+    
+    public int getRegNum(){
+        return regNum;
+    }
+    
+    public void setRegNum(int newRegNum){
+        regNum = newRegNum;
+    }
 }
