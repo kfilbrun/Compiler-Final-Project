@@ -52,32 +52,22 @@ public class Fun_Declaration extends Declaration{
     }
 
     @Override
-    CodeItem genLLCode() {
+    public CodeItem genLLCode() {
         //get return type and name from appropriate fields
         ReturnType returnType = this.getReturnType();
         int myReturnNumber;
+        
         if(returnType.equals(ReturnType.INT)){
-            myReturnNumber = 1;
+            myReturnNumber = Data.TYPE_INT;
         } else{
-            myReturnNumber = 0;
+            myReturnNumber = Data.TYPE_VOID;
         }
-        String name = this.getName();
-            //create a new Function
+        
         Function newFunc = new Function(myReturnNumber, name);
-
-        FuncParam curParam = null;
-        boolean firstParam = true;
+        
+        FuncParam prevParam = null;
         for(Parameter param : params){
-            if(firstParam){
-                curParam = new FuncParam(Data.TYPE_INT, param.name, false);
-                newFunc.setFirstParam(curParam);
-                firstParam = false;
-            }
-            else{
-                FuncParam nextParam = new FuncParam(Data.TYPE_INT, param.name, false);
-                curParam.setNextParam(nextParam);
-                curParam = nextParam;
-            }
+            prevParam = param.genLLCode(newFunc, prevParam);
         }
         
         newFunc.createBlock0();
@@ -86,6 +76,6 @@ public class Fun_Declaration extends Declaration{
         newFunc.setCurrBlock(newBlock);
         //call genCode on Compound Statement
         (this.compoundStatement).genLLCode(newFunc);                      //Void Return Type - Passing in reference to self instead???
-        return null;
+        return newFunc;
     }
 }

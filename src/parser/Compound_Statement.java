@@ -37,7 +37,7 @@ public class Compound_Statement extends Statement {
             localVars.put(varDecl.getName(), 0);
         }
         for (Statement statement : this.statements) {
-            statement.genLLCode(function);                                      //Pass in local variables table instead ?
+            statement.genLLCode(function);
         }
     }
 }

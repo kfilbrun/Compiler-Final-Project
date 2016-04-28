@@ -1,6 +1,8 @@
 
 package parser;
 import java.io.PrintWriter;
+import lowlevel.Data;
+import lowlevel.FuncParam;
 import lowlevel.Function;
 
 public class Parameter {
@@ -18,7 +20,13 @@ public class Parameter {
         w.print(" " + name + (isArray ? "[]" : "") + " ");
     }
     
-    public void genLLCode(Function func){
-        func.getTable().put(name, 0);
+    public FuncParam genLLCode(Function func, FuncParam prevParam){
+        FuncParam p = new FuncParam(Data.TYPE_INT, name, false);
+        if(prevParam == null){
+            func.setFirstParam(p);
+        } else {
+            prevParam.setNextParam(p);
+        }
+        return p;
     }
 }
