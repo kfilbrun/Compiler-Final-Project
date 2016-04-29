@@ -38,7 +38,7 @@ public class Selection_Statement extends Statement {
     }
 
     @Override
-    void genLLCode(Function function) {
+    void genLLCode(Function function) throws CodeGenerationException{
 //        BasicBlock ifBlock = new BasicBlock(function);
 //        function.appendToCurrentBlock(ifBlock);
 //        function.setCurrBlock(ifBlock);

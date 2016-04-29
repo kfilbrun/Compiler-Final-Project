@@ -18,7 +18,7 @@ public class Expression_Statement extends Statement{
         }
     }
     
-    public void genLLCode(Function function) {
+    public void genLLCode(Function function) throws CodeGenerationException{
         expression.genLLCode(function);
     }
 }

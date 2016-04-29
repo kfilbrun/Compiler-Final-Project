@@ -27,7 +27,7 @@ public class Binary_Expression extends Expression{
     }
 
     @Override
-    void genLLCode(Function f) {
+    void genLLCode(Function f) throws CodeGenerationException{
         //call gencode on left and right children
         expression1.genLLCode(f);
         expression2.genLLCode(f);

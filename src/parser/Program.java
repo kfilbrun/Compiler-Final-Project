@@ -35,7 +35,7 @@ public class Program {
         }
     }
     
-    public CodeItem genLLCode(){
+    public CodeItem genLLCode() throws CodeGenerationException{
         CodeItem firstItem = null;
         CodeItem currentItem = null;
         
@@ -55,6 +55,5 @@ public class Program {
         }
         
         return firstItem;
-    }
-    
+    }   
 }

@@ -28,7 +28,7 @@ public class Iteration_Statement extends Statement {
     }
 
     @Override
-    void genLLCode(Function function) {
+    void genLLCode(Function function) throws CodeGenerationException{
         BasicBlock initialExprBlock = new BasicBlock(function);
         function.appendToCurrentBlock(initialExprBlock);
         function.setCurrBlock(initialExprBlock);

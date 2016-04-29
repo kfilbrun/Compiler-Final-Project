@@ -52,7 +52,7 @@ public class Fun_Declaration extends Declaration{
     }
 
     @Override
-    public CodeItem genLLCode() {
+    public CodeItem genLLCode() throws CodeGenerationException{
         //get return type and name from appropriate fields
         ReturnType returnType = this.getReturnType();
         int myReturnNumber;

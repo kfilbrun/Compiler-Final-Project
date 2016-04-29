@@ -5,5 +5,5 @@ import lowlevel.CodeItem;
 public abstract class Declaration {
     abstract void print(PrintWriter p, String tabLvl);
     
-    abstract CodeItem genLLCode();    
+    abstract CodeItem genLLCode() throws CodeGenerationException;    
 }
