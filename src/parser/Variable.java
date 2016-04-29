@@ -28,12 +28,12 @@ public class Variable extends Expression{
 
     @Override
     void genLLCode(Function f) throws CodeGenerationException {
-        Map localSymbolTable = f.getTable();
+        Map<String, Integer> localSymbolTable = f.getTable();
         if(localSymbolTable.containsKey(name)){
-            localSymbolTable.put(name, expression.getRegNum());
+            this.setRegNum(localSymbolTable.get(name));
         }
         else if(CMinusCompiler.globalHash.containsKey(name)){
-            CMinusCompiler.globalHash.put(name, expression.getRegNum());
+            this.setRegNum(CMinusCompiler.globalHash.get(name));
         }
         else{
             throw new CodeGenerationException("Variable Error: Variable not "
