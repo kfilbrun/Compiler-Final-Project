@@ -6,7 +6,6 @@ import lowlevel.Function;
 import lowlevel.Operand;
 import static lowlevel.Operand.OperandType.*;
 import lowlevel.Operation;
-import lowlevel.Operation.OperationType;
 import static lowlevel.Operation.OperationType.ASSIGN;
 
 public class Num extends Expression{

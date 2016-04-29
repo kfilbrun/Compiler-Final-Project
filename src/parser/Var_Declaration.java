@@ -2,7 +2,6 @@
 package parser;
 
 import compiler.CMinusCompiler;
-import java.util.ArrayList;
 import java.io.PrintWriter;
 import lowlevel.CodeItem;
 import lowlevel.Data;
