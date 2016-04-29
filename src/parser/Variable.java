@@ -33,7 +33,8 @@ public class Variable extends Expression{
             this.setRegNum(localSymbolTable.get(name));
         }
         else if(CMinusCompiler.globalHash.containsKey(name)){
-            this.setRegNum(CMinusCompiler.globalHash.get(name));
+            // make Rnew = load name
+            //this.setRegNum(Rnew);
         }
         else{
             throw new CodeGenerationException("Variable Error: Variable not "

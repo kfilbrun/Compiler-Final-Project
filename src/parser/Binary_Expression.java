@@ -58,7 +58,9 @@ public class Binary_Expression extends Expression{
         OperationType opT = opTypeToOperationType.get(opType);
         Operation binExpOper = new Operation(opT, b);
         //Get Location for your result
-        Operand dest = new Operand(REGISTER, f.getNewRegNum());
+        int newRegNum = f.getNewRegNum();
+        Operand dest = new Operand(REGISTER, newRegNum);
+        this.setRegNum(newRegNum);
         //Add operation to do your function
         Operand expr1Op = new Operand(REGISTER, expr1Location);
         Operand expr2Op = new Operand(REGISTER, expr2Location);

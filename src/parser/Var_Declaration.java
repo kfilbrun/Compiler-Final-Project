@@ -46,8 +46,7 @@ public class Var_Declaration extends Declaration{
     }
     
     //Function scoped vardecl
-    CodeItem genLLCode(Function func)  throws CodeGenerationException{
-        func.getTable().put(declID, 0);
-        return new Data(Data.TYPE_INT, declID);
+    void genLLCode(Function func)  throws CodeGenerationException{
+        func.getTable().put(declID, func.getNewRegNum());
     }
 }
