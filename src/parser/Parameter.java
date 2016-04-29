@@ -20,13 +20,9 @@ public class Parameter {
         w.print(" " + name + (isArray ? "[]" : "") + " ");
     }
     
-    public FuncParam genLLCode(Function func, FuncParam prevParam){
+    public FuncParam genLLCode(Function func){
         FuncParam p = new FuncParam(Data.TYPE_INT, name, false);
-        if(prevParam == null){
-            func.setFirstParam(p);
-        } else {
-            prevParam.setNextParam(p);
-        }
+        func.getTable().put(name, func.getNewRegNum());
         return p;
     }
 }

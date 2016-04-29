@@ -1,6 +1,8 @@
 
 package parser;
+import compiler.CMinusCompiler;
 import java.io.PrintWriter;
+import java.util.Map;
 import lowlevel.Function;
 
 public class Variable extends Expression{
@@ -25,8 +27,17 @@ public class Variable extends Expression{
     }
 
     @Override
-    void genLLCode(Function f) {
-        
+    void genLLCode(Function f) throws CodeGenerationException {
+        Map localSymbolTable = f.getTable();
+        if(localSymbolTable.containsKey(name)){
+            localSymbolTable.put(name, expression.getRegNum());
+        }
+        else if(CMinusCompiler.globalHash.containsKey(name)){
+            CMinusCompiler.globalHash.put(name, expression.getRegNum());
+        }
+        else{
+            throw new CodeGenerationException("Variable Error: Variable not "
+                    + "+ found in local or global symbol table");
+        }
     }
-    
 }

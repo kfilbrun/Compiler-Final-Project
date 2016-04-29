@@ -6,7 +6,7 @@ import lowlevel.Function;
 public abstract class Expression {
     abstract void print(PrintWriter p, String tabLvl);
 
-    abstract void genLLCode(Function func);
+    abstract void genLLCode(Function func) throws CodeGenerationException;
     
     private int regNum;
     
