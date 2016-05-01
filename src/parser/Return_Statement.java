@@ -2,6 +2,8 @@
 package parser;
 import java.io.PrintWriter;
 import lowlevel.Function;
+import lowlevel.Operand;
+import lowlevel.Operation;
 
 public class Return_Statement extends Statement{
     //variable declarations
@@ -21,7 +23,17 @@ public class Return_Statement extends Statement{
     }
 
     @Override
-    void genLLCode(Function function) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    void genLLCode(Function function) throws CodeGenerationException{
+        Operation oper = new Operation(Operation.OperationType.RETURN, function.getCurrBlock());
+        if(expression != null){
+            expression.genLLCode(function);
+            Operand returnOper = new Operand(Operand.OperandType.REGISTER, expression.getRegNum());
+            oper.setSrcOperand(0, returnOper);
+        }
+        function.getCurrBlock().appendOper(oper);
+        
+        Operation retJumpOper = new Operation(Operation.OperationType.JMP, function.getCurrBlock());
+        Operand jmpLocation = new Operand(Operand.OperandType.BLOCK, function.genReturnBlock().getBlockNum());
+        retJumpOper.setDestOperand(0, jmpLocation);
     }
 }
