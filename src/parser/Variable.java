@@ -37,7 +37,7 @@ public class Variable extends Expression{
         }
         else{
             throw new CodeGenerationException("Variable Error: Variable not "
-                    + "+ found in local or global symbol table");
+                    + " found in local or global symbol table");
         }
     }
 }
