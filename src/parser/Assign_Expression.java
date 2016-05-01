@@ -36,29 +36,27 @@ public class Assign_Expression extends Expression {
         Operation operation = null;
         
         expression.genLLCode(f);
-        //variable.genLLCode(f);
-        
-        Operand srcOp = new Operand(REGISTER, expression.getRegNum());
-        //Operand destOp = new Operand(REGISTER, variable.getRegNum());
         
         if (f.getTable().containsKey(variable.name)) {
-            //assign, reg dest of variable.getRegNum
-            //operation = new Operation(ASSIGN, b);
+            Operand srcOp = new Operand(REGISTER, expression.getRegNum());
+            Operand destOp = new Operand(REGISTER, variable.getRegNum());
+            operation = new Operation(ASSIGN, b);
+            operation.setSrcOperand(0, srcOp);            
+            operation.setDestOperand(0, destOp);
         }
         else if (CMinusCompiler.globalHash.containsKey(variable.name)) {
             //store  2 src expressReg, name
+            Operand srcOp0 = new Operand(REGISTER, expression.getRegNum());
+            Operand srcOp1 = new Operand(STRING, variable.name);
+            operation = new Operation(Operation.OperationType.STORE_I, b);
+            operation.setSrcOperand(0, srcOp0);
+            operation.setSrcOperand(1, srcOp1);
         }
         else {
             throw new CodeGenerationException("Variable not found in Assign_Expression");
         }
-            
-        // this stuff probably goes in if
-        operation.setSrcOperand(0, srcOp);
-        operation.setDestOperand(0, destOp);
         
         b.appendOper(operation);
-        
         this.setRegNum(variable.getRegNum());
     }
-    
 }
