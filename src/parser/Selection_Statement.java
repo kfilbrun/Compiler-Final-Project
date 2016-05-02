@@ -87,6 +87,6 @@ public class Selection_Statement extends Statement {
             function.appendUnconnectedBlock(elseBlock);
         }
         
-        function.setCurrBlock(postBlock); 
+        function.setCurrBlock(postBlock);
     }
 }
