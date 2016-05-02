@@ -130,6 +130,8 @@ public class CMinusCompiler implements Compiler {
         } catch (IOException ioe) {
         } catch (Parser.ParserException ex) {
             System.out.println("There was an error with the parser.");
+        } catch (CodeGenerationException ex) {
+            Logger.getLogger(CMinusCompiler.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
