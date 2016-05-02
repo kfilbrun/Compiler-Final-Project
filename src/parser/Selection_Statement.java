@@ -64,7 +64,7 @@ public class Selection_Statement extends Statement {
         Operation beqOper = new Operation(Operation.OperationType.BEQ, curr);
         beqOper.setSrcOperand(0, branchRegOp);
         beqOper.setSrcOperand(1, compRegOp);
-        beqOper.setDestOperand(0, tgtOp);
+        beqOper.setSrcOperand(2, tgtOp);
         curr.appendOper(beqOper);
                 
         function.appendToCurrentBlock(thenBlock);
