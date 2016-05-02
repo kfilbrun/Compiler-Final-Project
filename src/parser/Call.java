@@ -3,7 +3,10 @@ package parser;
 
 import java.util.ArrayList;
 import java.io.PrintWriter;
+import lowlevel.BasicBlock;
 import lowlevel.Function;
+import lowlevel.Operand;
+import lowlevel.Operation;
 
 public class Call extends Expression{
     //variable declaration
@@ -42,6 +45,22 @@ public class Call extends Expression{
     }
 
     @Override
-    void genLLCode(Function f) {
+    void genLLCode(Function f) throws CodeGenerationException{
+        BasicBlock curr = f.getCurrBlock();
+        for(int i = expressions.size()-1; i >= 0; i--){
+            Expression curExpr = expressions.get(i);
+            curExpr.genLLCode(f);
+            Operand paramOp = new Operand(Operand.OperandType.REGISTER, curExpr.getRegNum());
+            Operation paramOper = new Operation(Operation.OperationType.PASS, curr);
+            paramOper.setDestOperand(0, paramOp);
+            curr.appendOper(paramOper);
+        }
+        
+        Operand callOp = new Operand(Operand.OperandType.STRING, name);
+        Operation callOper = new Operation(Operation.OperationType.CALL, curr);
+        callOper.setDestOperand(0, callOp);
+        
+        curr.appendOper(callOper);
+        //Move return register to regular register??
     }
 }
