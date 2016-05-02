@@ -74,8 +74,8 @@ public class Selection_Statement extends Statement {
         function.appendToCurrentBlock(postBlock);
         
         if(statement2 != null){ //If we have an else stmt
+            curr = function.getCurrBlock();                                     //Moved from one line - Removes return oper though...
             function.setCurrBlock(elseBlock);
-            curr = function.getCurrBlock();
             statement2.genLLCode(function);
             
             //Somehow this needs to be handled if the the else has a return

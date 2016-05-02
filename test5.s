@@ -24,6 +24,6 @@ main_bb3:
 main_bb4:
 	movl	$3, %EAX
 	movl	%EAX, a(%RIP)
+main_bb6:
 	movl	$4, %EAX
 	movl	%EAX, a(%RIP)
-main_bb6:
