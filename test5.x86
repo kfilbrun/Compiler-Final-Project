@@ -14,3 +14,22 @@
     (OPER 9 Return []  [(m EAX)])
   )
 )
+(FUNCTION  main  []
+  (BB 2
+  )
+  (BB 3
+    (OPER 4 Mov [(r 6)]  [(i 5)])
+    (OPER 5 Mov [(r 1)]  [(r 6)])
+    (OPER 6 Mov [(r 7)]  [(i 5)])
+    (OPER 39 Cmp [(m Flags)]  [(r 1)(r 7)])
+    (OPER 40 BNE []  [(bb 6)(m Flags)])
+  )
+  (BB 4
+    (OPER 9 Mov [(r 9)]  [(i 3)])
+    (OPER 10 Store []  [(r 9)(s a)])
+    (OPER 11 Mov [(r 10)]  [(i 4)])
+    (OPER 12 Store []  [(r 10)(s a)])
+  )
+  (BB 6
+  )
+)

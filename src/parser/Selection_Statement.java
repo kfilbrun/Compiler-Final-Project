@@ -74,9 +74,9 @@ public class Selection_Statement extends Statement {
         function.appendToCurrentBlock(postBlock);
         
         if(statement2 != null){ //If we have an else stmt
-            function.setCurrBlock(thenBlock);
+            function.setCurrBlock(elseBlock);
             curr = function.getCurrBlock();
-            statement1.genLLCode(function);
+            statement2.genLLCode(function);
             
             //Somehow this needs to be handled if the the else has a return
             Operand jmpPost = new Operand(Operand.OperandType.BLOCK, tgtBlock);
@@ -85,6 +85,7 @@ public class Selection_Statement extends Statement {
             
             curr.appendOper(jmpOper);
             function.appendUnconnectedBlock(elseBlock);
+            
         }
         
         function.setCurrBlock(postBlock);

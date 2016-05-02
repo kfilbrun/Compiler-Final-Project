@@ -84,9 +84,13 @@ public class Fun_Declaration extends Declaration{
         newFunc.setCurrBlock(newBlock);
         //call genCode on Compound Statement
         (this.compoundStatement).genLLCode(newFunc);   
-        //Void Return Type - Passing in reference to self instead???
+        //Append return block
         newFunc.appendBlock(newFunc.getReturnBlock());
-        //append unconnected
+        //Append unconnected chain of blocks
+        BasicBlock firstUnCon = newFunc.getFirstUnconnectedBlock();
+        if(firstUnCon != null){
+            newFunc.appendBlock(firstUnCon);
+        }
         return newFunc;
     }
 }
