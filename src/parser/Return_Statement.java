@@ -24,16 +24,19 @@ public class Return_Statement extends Statement{
 
     @Override
     void genLLCode(Function function) throws CodeGenerationException{
-        Operation oper = new Operation(Operation.OperationType.RETURN, function.getCurrBlock());
         if(expression != null){
             expression.genLLCode(function);
-            Operand returnOper = new Operand(Operand.OperandType.REGISTER, expression.getRegNum());
-            oper.setSrcOperand(0, returnOper);
+            Operation movOper = new Operation(Operation.OperationType.ASSIGN, function.getCurrBlock());
+            Operand srcOper = new Operand(Operand.OperandType.REGISTER, expression.getRegNum());
+            Operand dest = new Operand(Operand.OperandType.MACRO,"RetReg");
+            movOper.setSrcOperand(0, srcOper);
+            movOper.setDestOperand(0, dest);
+            function.getCurrBlock().appendOper(movOper);
         }
-        function.getCurrBlock().appendOper(oper);
-        
+                
         Operation retJumpOper = new Operation(Operation.OperationType.JMP, function.getCurrBlock());
         Operand jmpLocation = new Operand(Operand.OperandType.BLOCK, function.genReturnBlock().getBlockNum());
-        retJumpOper.setDestOperand(0, jmpLocation);
+        retJumpOper.setSrcOperand(0, jmpLocation);
+        function.getCurrBlock().appendOper(retJumpOper);
     }
 }

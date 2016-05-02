@@ -34,7 +34,7 @@ public class Compound_Statement extends Statement {
     void genLLCode(Function function) throws CodeGenerationException{
         Map<String, Integer> localVars = function.getTable();
         for (Var_Declaration varDecl : this.varDecls) {
-            localVars.put(varDecl.getName(), 0);
+            localVars.put(varDecl.getName(), function.getNewRegNum());
         }
         for (Statement statement : this.statements) {
             statement.genLLCode(function);

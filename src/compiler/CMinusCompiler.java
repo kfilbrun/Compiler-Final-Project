@@ -35,13 +35,10 @@ public class CMinusCompiler implements Compiler {
             Parser myParser = new Parser(fileName);
 
             Program parseTree = myParser.parseProgram();
-            //*****************
-            //this is how we think the print should work with our existing parse code
-            //it prints the AST to AST.txt...is that where the AST should live in this paradigm?
+           
             writer = new PrintWriter("AST.txt", "UTF-8");   
             parseTree.print(writer);
             writer.close();
-            //*******************************
 
             CodeItem lowLevelCode = parseTree.genLLCode();
 

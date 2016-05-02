@@ -83,7 +83,10 @@ public class Fun_Declaration extends Declaration{
         newFunc.appendBlock(newBlock);
         newFunc.setCurrBlock(newBlock);
         //call genCode on Compound Statement
-        (this.compoundStatement).genLLCode(newFunc);                      //Void Return Type - Passing in reference to self instead???
+        (this.compoundStatement).genLLCode(newFunc);   
+        //Void Return Type - Passing in reference to self instead???
+        newFunc.appendBlock(newFunc.getReturnBlock());
+        //append unconnected
         return newFunc;
     }
 }

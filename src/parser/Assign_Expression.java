@@ -39,7 +39,9 @@ public class Assign_Expression extends Expression {
         
         if (f.getTable().containsKey(variable.name)) {
             Operand srcOp = new Operand(REGISTER, expression.getRegNum());
-            Operand destOp = new Operand(REGISTER, variable.getRegNum());
+            int regNum = f.getTable().get(variable.name);
+            variable.setRegNum(regNum);
+            Operand destOp = new Operand(REGISTER, regNum);
             operation = new Operation(ASSIGN, b);
             operation.setSrcOperand(0, srcOp);            
             operation.setDestOperand(0, destOp);
@@ -57,6 +59,5 @@ public class Assign_Expression extends Expression {
         }
         
         b.appendOper(operation);
-        this.setRegNum(variable.getRegNum());
     }
 }
