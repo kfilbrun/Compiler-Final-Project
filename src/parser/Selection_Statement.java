@@ -2,6 +2,8 @@ package parser;
 import java.io.PrintWriter;
 import lowlevel.BasicBlock;
 import lowlevel.Function;
+import lowlevel.Operand;
+import lowlevel.Operation;
 
 public class Selection_Statement extends Statement {
     //variable declarations
@@ -39,39 +41,49 @@ public class Selection_Statement extends Statement {
 
     @Override
     void genLLCode(Function function) throws CodeGenerationException{
-//        BasicBlock ifBlock = new BasicBlock(function);
-//        function.appendToCurrentBlock(ifBlock);
-//        function.setCurrBlock(ifBlock);
-        
         BasicBlock thenBlock = new BasicBlock(function);
         BasicBlock postBlock = new BasicBlock(function);
         BasicBlock elseBlock = null;
         int tgtBlock = postBlock.getBlockNum();
         
-        //if elseStat elseBlock = new BaicBlock and tgtBlock = elseBlock.getBlock
         if(statement2 != null){ //If we have an else stmt
             elseBlock = new BasicBlock(function);
             tgtBlock = elseBlock.getBlockNum();
         }
         
         expression.genLLCode(function);
+        
         int branchReg = expression.getRegNum();
+        Operand branchRegOp = new Operand(Operand.OperandType.REGISTER, branchReg);
+        Operand compRegOp = new Operand(Operand.OperandType.REGISTER, expression.getRegNum());
+        Operand tgtOp = new Operand(Operand.OperandType.BLOCK, tgtBlock);
         
         BasicBlock curr = function.getCurrBlock();
-        // add BEQ
         
+        // add BEQ
+        Operation beqOper = new Operation(Operation.OperationType.BEQ, curr);
+        beqOper.setSrcOperand(0, branchRegOp);
+        beqOper.setSrcOperand(1, compRegOp);
+        beqOper.setDestOperand(0, tgtOp);
+        curr.appendOper(beqOper);
+                
         function.appendToCurrentBlock(thenBlock);
         function.setCurrBlock(thenBlock);
         statement1.genLLCode(function);
         
-        
         function.appendToCurrentBlock(postBlock);
         
         if(statement2 != null){ //If we have an else stmt
-            elseBlock = new BasicBlock(function);
             function.setCurrBlock(thenBlock);
+            curr = function.getCurrBlock();
             statement1.genLLCode(function);
-            elseBlock.setNextBlock(postBlock); //jump post
+            
+            //Somehow this needs to be handled if the the else has a return
+            Operand jmpPost = new Operand(Operand.OperandType.BLOCK, tgtBlock);
+            Operation jmpOper = new Operation(Operation.OperationType.JMP, curr);
+            jmpOper.setSrcOperand(0, jmpPost);
+            
+            curr.appendOper(jmpOper);
             function.appendUnconnectedBlock(elseBlock);
         }
         
