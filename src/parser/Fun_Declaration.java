@@ -66,13 +66,15 @@ public class Fun_Declaration extends Declaration{
         Function newFunc = new Function(myReturnNumber, name);
         
         FuncParam curParam = null;
-        for(Parameter param : params){
-            if(curParam == null){
-                curParam = param.genLLCode(newFunc);
-                newFunc.setFirstParam(curParam);
-            }
-            else{
-                curParam.setNextParam(param.genLLCode(newFunc));
+        if (params != null){
+            for(Parameter param : params){
+                if(curParam == null){
+                    curParam = param.genLLCode(newFunc);
+                    newFunc.setFirstParam(curParam);
+                }
+                else{
+                    curParam.setNextParam(param.genLLCode(newFunc));
+                }
             }
         }
         
