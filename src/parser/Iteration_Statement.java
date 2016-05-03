@@ -61,14 +61,14 @@ public class Iteration_Statement extends Statement {
     void genBranch(BasicBlock targetBlock, BasicBlock curr){
         int branchReg = expression.getRegNum();
         Operand branchRegOp = new Operand(Operand.OperandType.REGISTER, branchReg);
-        Operand compRegOp = new Operand(Operand.OperandType.REGISTER, expression.getRegNum());
+        Operand compRegOp = new Operand(Operand.OperandType.INTEGER, 0);
         Operand tgtOp = new Operand(Operand.OperandType.BLOCK, targetBlock.getBlockNum());
         
         // add BEQ
         Operation beqOper = new Operation(Operation.OperationType.BEQ, curr);
         beqOper.setSrcOperand(0, branchRegOp);
         beqOper.setSrcOperand(1, compRegOp);
-        beqOper.setDestOperand(0, tgtOp);
+        beqOper.setSrcOperand(2, tgtOp);
         curr.appendOper(beqOper);
     }
     

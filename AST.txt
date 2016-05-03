@@ -29,6 +29,23 @@ Program
                 5
         )
         {
+            IF
+            (
+                EE
+                    b
+                    5
+            )
+            {
+                a
+                =
+                    200
+            }
+            ELSE
+            {
+                a
+                =
+                    21
+            }
             a
             =
                 3
@@ -45,6 +62,22 @@ Program
         i
         =
             1
+        While
+        (
+            LE
+                i
+                8
+        )
+            g
+            =
+                PLUS
+                    g
+                    i
+            i
+            =
+                PLUS
+                    i
+                    1
         h
         =
             OVER

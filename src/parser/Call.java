@@ -53,7 +53,7 @@ public class Call extends Expression{
             curExpr.genLLCode(f);
             Operand paramOp = new Operand(Operand.OperandType.REGISTER, curExpr.getRegNum());
             Operation paramOper = new Operation(Operation.OperationType.PASS, curr);
-            paramOper.addAttribute(new Attribute("PARAM_NUM", Integer.toString(i)));
+            paramOper.addAttribute(new Attribute("PARAM_NUM", Integer.toString(i+1)));
             paramOper.setSrcOperand(0, paramOp);
             curr.appendOper(paramOper);
         }

@@ -18,6 +18,12 @@ int main (void) {
   b = 5;
 
   if (b == 5) {
+    if (b==5) {
+        a=200;
+    }
+    else {
+        a=21;
+    }
     a = 3;
   }
   else {
