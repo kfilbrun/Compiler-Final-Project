@@ -26,7 +26,10 @@ int main (void) {
 
   g = 0;
   i = 1;
-
+  while (i <= 8) {
+    g = g + i;
+    i = i+1;
+  }
   h = g / 3;
   g = h * 4;
 
