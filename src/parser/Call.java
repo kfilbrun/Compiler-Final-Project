@@ -53,7 +53,7 @@ public class Call extends Expression{
             curExpr.genLLCode(f);
             Operand paramOp = new Operand(Operand.OperandType.REGISTER, curExpr.getRegNum());
             Operation paramOper = new Operation(Operation.OperationType.PASS, curr);
-            paramOper.addAttribute(new Attribute("PARAM_NUM", Integer.toString(i+1)));
+            paramOper.addAttribute(new Attribute("PARAM_NUM", Integer.toString(i)));
             paramOper.setSrcOperand(0, paramOp);
             curr.appendOper(paramOper);
         }
@@ -73,7 +73,7 @@ public class Call extends Expression{
         Operation moveOper = new Operation(Operation.OperationType.ASSIGN, curr);
         moveOper.setSrcOperand(0, returnRegister);
         moveOper.setDestOperand(0, destReg);
-        
+        curr.appendOper(moveOper);
         this.setRegNum(retReg);
     }
 }

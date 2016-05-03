@@ -35,11 +35,24 @@ int main (void) {
   while (i <= 8) {
     g = g + i;
     i = i+1;
+    putchar (10);
+    putchar (i+48);
   }
+  putchar(10);
+
   h = g / 3;
   g = h * 4;
 
   c = addThem(a, b);
+putchar (a+48);
+a=7;
+putchar (10);
+putchar (a+48);
+putchar (10);
+putchar (b+48);
+putchar (10);
+putchar (c+48);
+putchar (10);
   putchar (c+g);
   putchar (10);
  

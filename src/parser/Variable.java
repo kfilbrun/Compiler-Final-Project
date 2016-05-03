@@ -3,7 +3,12 @@ package parser;
 import compiler.CMinusCompiler;
 import java.io.PrintWriter;
 import java.util.Map;
+import lowlevel.BasicBlock;
 import lowlevel.Function;
+import lowlevel.Operand;
+import static lowlevel.Operand.OperandType.*;
+import lowlevel.Operation;
+import static lowlevel.Operation.OperationType.*;
 
 public class Variable extends Expression{
     //variable declarations
@@ -33,7 +38,15 @@ public class Variable extends Expression{
             this.setRegNum(localSymbolTable.get(name));
         }
         else if(CMinusCompiler.globalHash.containsKey(name)){
-            this.setRegNum(f.getNewRegNum());
+            int localRegNum = f.getNewRegNum();
+            this.setRegNum(localRegNum);
+            Operand op1 = new Operand(STRING, name);
+            Operand op2 = new Operand(REGISTER, localRegNum);
+            BasicBlock block = f.getCurrBlock();
+            Operation newOp = new Operation(LOAD_I, block);
+            newOp.setSrcOperand(0, op1);
+            newOp.setDestOperand(0, op2);
+            block.appendOper(newOp);
         }
         else{
             throw new CodeGenerationException("Variable Error: Variable not "

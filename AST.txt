@@ -78,6 +78,20 @@ Program
                 PLUS
                     i
                     1
+            putchar
+            (
+                10
+            )
+            putchar
+            (
+                PLUS
+                    i
+                    48
+            )
+        putchar
+        (
+            10
+        )
         h
         =
             OVER
@@ -95,6 +109,49 @@ Program
                 a
                 b
             )
+        putchar
+        (
+            PLUS
+                a
+                48
+        )
+        a
+        =
+            7
+        putchar
+        (
+            10
+        )
+        putchar
+        (
+            PLUS
+                a
+                48
+        )
+        putchar
+        (
+            10
+        )
+        putchar
+        (
+            PLUS
+                b
+                48
+        )
+        putchar
+        (
+            10
+        )
+        putchar
+        (
+            PLUS
+                c
+                48
+        )
+        putchar
+        (
+            10
+        )
         putchar
         (
             PLUS
