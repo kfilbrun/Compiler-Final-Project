@@ -23,12 +23,11 @@
     (OPER 5 Mov [(r 1)]  [(r 6)])
     (OPER 6 Mov [(r 7)]  [(i 5)])
     (OPER 7 EQ [(r 8)]  [(r 1)(r 7)])
-    (OPER 8 BEQ []  [(r 8)(r 8)(bb 6)])
+    (OPER 8 BEQ []  [(r 8)(i 0)(bb 6)])
   )
   (BB 4
     (OPER 9 Mov [(r 9)]  [(i 3)])
     (OPER 10 Store []  [(r 9)(s a)])
-    (OPER 13 Jmp []  [(bb 6)])
   )
   (BB 5
     (OPER 14 Mov [(r 11)]  [(i 0)])
@@ -62,5 +61,6 @@
   (BB 6
     (OPER 11 Mov [(r 10)]  [(i 4)])
     (OPER 12 Store []  [(r 10)(s a)])
+    (OPER 13 Jmp []  [(bb 5)])
   )
 )
