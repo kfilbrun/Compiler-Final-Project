@@ -56,9 +56,9 @@ public class Call extends Expression{
             curr.appendOper(paramOper);
         }
         
-        Operand callOp = new Operand(Operand.OperandType.STRING, name);
+        Operand callOp = new Operand(Operand.OperandType.MACRO, name);
         Operation callOper = new Operation(Operation.OperationType.CALL, curr);
-        callOper.setDestOperand(0, callOp);
+        callOper.setSrcOperand(0, callOp);
         
         curr.appendOper(callOper);
         //Move return register to regular register??

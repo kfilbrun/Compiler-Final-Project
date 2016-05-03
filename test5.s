@@ -10,7 +10,7 @@ addThem_bb2:
 	movl	%ESI, %EDI
 addThem_bb3:
 	addl	%EDI, %EAX
-addThem_bb4:
+addThem_bb1:
 	ret
 .globl  main
 main:
