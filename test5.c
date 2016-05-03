@@ -18,6 +18,12 @@ int main (void) {
   b = 5;
 
   if (b == 5) {
+    if (b==5) {
+        a=200;
+    }
+    else {
+        a=21;
+    }
     a = 3;
   }
   else {
@@ -26,7 +32,10 @@ int main (void) {
 
   g = 0;
   i = 1;
-
+  while (i <= 8) {
+    g = g + i;
+    i = i+1;
+  }
   h = g / 3;
   g = h * 4;
 
