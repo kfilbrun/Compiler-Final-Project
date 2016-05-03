@@ -7,11 +7,11 @@
     (OPER 4 Add_I [(r 4)]  [(r 1)(r 2)])
     (OPER 5 Mov [(r 3)]  [(r 4)])
     (OPER 6 Mov [(m RetReg)]  [(r 3)])
-    (OPER 7 Jmp []  [(bb 4)])
+    (OPER 7 Jmp []  [(bb 1)])
   )
-  (BB 4
-    (OPER 8 Func_Exit []  [])
-    (OPER 9 Return []  [(m RetReg)])
+  (BB 1
+    (OPER 1 Func_Exit []  [])
+    (OPER 2 Return []  [(m RetReg)])
   )
 )
 (FUNCTION  main  []
@@ -23,12 +23,11 @@
     (OPER 5 Mov [(r 1)]  [(r 6)])
     (OPER 6 Mov [(r 7)]  [(i 5)])
     (OPER 7 EQ [(r 8)]  [(r 1)(r 7)])
-    (OPER 8 BEQ []  [(r 8)(r 8)(bb 6)])
+    (OPER 8 BEQ []  [(r 8)(i 0)(bb 6)])
   )
   (BB 4
     (OPER 9 Mov [(r 9)]  [(i 3)])
     (OPER 10 Store []  [(r 9)(s a)])
-    (OPER 13 Jmp []  [(bb 6)])
   )
   (BB 5
     (OPER 14 Mov [(r 11)]  [(i 0)])
@@ -53,14 +52,15 @@
     (OPER 33 JSR [(s putchar)]  [])
     (OPER 34 Mov [(r 20)]  [(i 0)])
     (OPER 35 Mov [(m RetReg)]  [(r 20)])
-    (OPER 36 Jmp []  [(bb 7)])
+    (OPER 36 Jmp []  [(bb 1)])
   )
-  (BB 7
-    (OPER 37 Func_Exit []  [])
-    (OPER 38 Return []  [(m RetReg)])
+  (BB 1
+    (OPER 1 Func_Exit []  [])
+    (OPER 2 Return []  [(m RetReg)])
   )
   (BB 6
     (OPER 11 Mov [(r 10)]  [(i 4)])
     (OPER 12 Store []  [(r 10)(s a)])
+    (OPER 13 Jmp []  [(bb 5)])
   )
 )
