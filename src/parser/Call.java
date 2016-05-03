@@ -64,5 +64,16 @@ public class Call extends Expression{
         callOper.setSrcOperand(0, callOp);
         
         curr.appendOper(callOper);
+        
+        
+        Operand returnRegister = new Operand(Operand.OperandType.MACRO, "RetReg");
+        int retReg = f.getNewRegNum();
+        Operand destReg = new Operand(Operand.OperandType.REGISTER, retReg);
+        
+        Operation moveOper = new Operation(Operation.OperationType.ASSIGN, curr);
+        moveOper.setSrcOperand(0, returnRegister);
+        moveOper.setDestOperand(0, destReg);
+        
+        this.setRegNum(retReg);
     }
 }
