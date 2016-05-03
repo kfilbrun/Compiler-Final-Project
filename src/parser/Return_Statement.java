@@ -35,7 +35,7 @@ public class Return_Statement extends Statement{
         }
                 
         Operation retJumpOper = new Operation(Operation.OperationType.JMP, function.getCurrBlock());
-        Operand jmpLocation = new Operand(Operand.OperandType.BLOCK, function.genReturnBlock().getBlockNum());
+        Operand jmpLocation = new Operand(Operand.OperandType.BLOCK, function.getReturnBlock().getBlockNum());
         retJumpOper.setSrcOperand(0, jmpLocation);
         function.getCurrBlock().appendOper(retJumpOper);
     }
