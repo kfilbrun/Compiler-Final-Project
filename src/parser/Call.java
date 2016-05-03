@@ -3,6 +3,7 @@ package parser;
 
 import java.util.ArrayList;
 import java.io.PrintWriter;
+import lowlevel.Attribute;
 import lowlevel.BasicBlock;
 import lowlevel.Function;
 import lowlevel.Operand;
@@ -52,15 +53,16 @@ public class Call extends Expression{
             curExpr.genLLCode(f);
             Operand paramOp = new Operand(Operand.OperandType.REGISTER, curExpr.getRegNum());
             Operation paramOper = new Operation(Operation.OperationType.PASS, curr);
-            paramOper.setDestOperand(0, paramOp);
+            paramOper.addAttribute(new Attribute("PARAM_NUM", Integer.toString(i)));
+            paramOper.setSrcOperand(0, paramOp);
             curr.appendOper(paramOper);
         }
-        
-        Operand callOp = new Operand(Operand.OperandType.MACRO, name);
+        //Maybe MACRO???
+        Operand callOp = new Operand(Operand.OperandType.STRING, name);
         Operation callOper = new Operation(Operation.OperationType.CALL, curr);
+        callOper.addAttribute(new Attribute("numParams", Integer.toString(expressions.size())));
         callOper.setSrcOperand(0, callOp);
         
         curr.appendOper(callOper);
-        //Move return register to regular register??
     }
 }
